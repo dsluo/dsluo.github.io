@@ -1,59 +1,61 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
-
 html {
     font-family: 'Roboto Slab', sans-serif;
-    height: 100%;
-    width: 100%;
 }
 
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;
-    background: url('../img/overlay.svg') no-repeat center center fixed;
-    background-color: #000000;
-    background-size: cover;
-    height: 100%;
+    margin: 0;
+    background-color: black;
+    color: white;
+    overflow: hidden;
+}
 
-    font-size: 20px;
+#animation {
+    height: 50%;
 }
 
 #content {
-    max-width: 750px;
+    position: absolute;
+    display: flex;
+    top:60%;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    font-size: 20px;
 }
 
-h1 {
-    font-size: 5em;
+#name {
+    font-size: 4em;
     margin: 0 0 16px 0;
-}
-
-ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
     text-align: center;
 }
 
-ul li {
-    display: inline-block;
-    margin: 4px;
+#button-list {
+    list-style: none;
+    text-align: center;
+    padding: 0;
+    margin: 0;
 }
 
-ul li a {
+#button-list li {
+    display: inline-block;
+    margin: 0.25rem;
+}
+
+#button-list a {
     border: solid 1px #ffffff;
     border-radius: 50%;
     display: table-cell;
     color: inherit;
-    font-size: 2em;
-    height: 2.5em;
-    width: 2.5em;
+    font-size: 1.75em;
+    height: 5rem;
+    width: 5rem;
     vertical-align: middle;
     text-align: center;
 
     transition: all 0.2s ease-in-out;
 }
 
-ul li a:hover {
+#button-list a:hover {
     background-color: #ffffff25;
+    font-size: 2.25em;
 }
