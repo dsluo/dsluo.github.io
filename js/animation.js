@@ -1,5 +1,5 @@
 let widthCoverage = 1;
-let heightCoverage = 1;
+let heightCoverage = 0.5;
 
 let canvasWidth = window.innerWidth * widthCoverage;
 let canvasHeight = window.innerHeight * heightCoverage;
@@ -10,7 +10,9 @@ scene.add(camera);
 
 camera.position.x = 0;
 camera.position.y = -10;
-camera.position.z = 30;
+camera.position.z = 25;
+
+camera.lookAt(0,15,0);
 
 const canvas = document.getElementById("animation");
 
@@ -20,7 +22,7 @@ const renderer = new THREE.WebGLRenderer({
 });
 renderer.setClearColor(0x000000, 0);
 
-const rows = 50;
+const rows = 75;
 const cols = Math.floor(canvasWidth / 8);
 const perlinScale = 0.04;
 const waveSpeed = 0.2;

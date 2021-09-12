@@ -14,11 +14,10 @@ body {
 }
 
 #content {
-    position: absolute;
     display: flex;
-    top:60%;
     width: 100%;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
     font-size: 20px;
 }
