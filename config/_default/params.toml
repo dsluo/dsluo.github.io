@@ -5,22 +5,23 @@
 # Refer to the theme docs for more details about each of these parameters.
 # https://jpanther.github.io/congo/docs/configuration/#theme-parameters
 
-colorScheme = "congo"
-# darkMode = "auto"
-# darkToggle = false
-# logo = "img/logo.jpg"
+colorScheme = "avocado"
+darkMode = "auto"
+darkToggle = true
+# logo = "pfp.png"
 # description = "My awesome website"
 # mainSections = ["section1", "section2"]
 # robots = ""
 
 [homepage]
-  layout = "page" # valid options: page, profile, custom
+  layout = "custom" # valid options: page, profile, custom
   showRecent = false
+  showBio = true
 
 [article]
   showDate = true
-  dateFormat = "2 January 2006"
-  showAuthor = true
+  dateFormat = "January 2, 2006"
+  showAuthor = false
   showBreadcrumbs = false
   showDraftLabel = true
   showEdit = false
@@ -28,14 +29,14 @@ colorScheme = "congo"
   editAppendPath = true
   showHeadingAnchors = true
   showPagination = true
-  showReadingTime = true
+  showReadingTime = false
   showWordCount = false
   # sharingLinks = ["facebook", "twitter", "pinterest", "reddit", "linkedin", "email"]
 
 [list]
   showBreadcrumbs = false
-  showSummary = false
-  groupByYear = true
+  showSummary = true
+  groupByYear = false
 
 [taxonomy]
   showTermCount = true
