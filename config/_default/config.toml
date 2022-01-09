@@ -19,7 +19,7 @@ summaryLength = 0
 [author]
   name = "David Luo"
   image = "img/mabel.jpg"
-  bio = "A little bit about you"
+  bio = "Software Developer"
   links = [
     { email = "mailto:me@dsluo.dev" },
   #   { link = "https://link-to-some-website.com/" },
