@@ -12,7 +12,7 @@
     </h1>
     {{ if .Site.Params.homepage.showBio | default false }}
       {{ with .Site.Author.bio | markdownify | emojify }}
-        <div class="!mb-9 text-xl text-neutral-500 dark:text-neutral-400">
+        <div class="mt-1 text-xl text-neutral-500 dark:text-neutral-400">
           {{ . }}
         </div>
       {{ end }}
