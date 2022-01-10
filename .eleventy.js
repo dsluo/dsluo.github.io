@@ -3,6 +3,8 @@ const toml = require('@ltd/j-toml');
 module.exports = function(eleventyConfig) {
     eleventyConfig.setFrontMatterParsingOptions({
         bigint: false,
+
+        language: 'toml',
         engines: {
             toml: {
                 parse: function(str, opts) {
