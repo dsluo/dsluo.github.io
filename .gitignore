@@ -33,3 +33,6 @@ hugo.linux
 
 # Temporary lock file while building
 /.hugo_build.lock
+
+# This is built from the theme's CSS stuff
+assets/css/compiled/main.css
