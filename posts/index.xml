@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on David Luo</title>
+    <link>/posts/</link>
+    <description>Recent content in Posts on David Luo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 09 Jan 2022 01:28:40 -0500</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hello, World!</title>
+      <link>/posts/intro/</link>
+      <pubDate>Sun, 09 Jan 2022 01:28:40 -0500</pubDate>
+      
+      <guid>/posts/intro/</guid>
+      <description>&lt;p&gt;There will be some words here, eventually. Hopefully some good words.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
