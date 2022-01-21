@@ -36,3 +36,6 @@ hugo.linux
 
 # This is built from the theme's CSS stuff
 assets/css/compiled/main.css
+
+# Secrets
+.env

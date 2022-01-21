@@ -1,17 +1,16 @@
 +++
 title = "About"
-date = 2022-01-09T02:36:03-05:00
+date = 2022-01-12T23:31:31-05:00
 draft = false
-showDate = false
 +++
 
-Hello, world!
+Hi, I'm David. I'm a software developer based out of Ann Arbor, MI.
 
-This is where I will eventually put words that I think of onto the Internet.
+You can find me on the Internet here:
 
-{{<highlight html>}}
+* [github://dsluo](https://github.com/dsluo/)
+* [github://dsluo-archive](https://github.com/dsluo-archive/)
+* [linkedin://dsluo](https://www.linkedin.com/in/dsluo/)
+* https://dsluo.dev (you are here).
 
-<a href="asdf">
-
-
-{{</highlight>}}
+Hiring? Take a look at my [resume](https://dsluo.dev/resume/).
