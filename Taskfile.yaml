@@ -1,0 +1,61 @@
+# https://taskfile.dev
+
+version: '3'
+
+output: 'prefixed'
+
+tasks:
+  default:
+    desc: See `dev`.
+    deps: [dev]
+
+  dev:
+    desc: Serve locally for development and watch for changes.
+    deps:
+      - task: hugo
+        vars: {WATCH: true}
+      - task: tailwind
+        vars: {WATCH: true}
+
+  build:
+    desc: Build for production.
+    cmds:
+      # We want this to be sequential since Hugo will minify Tailwind's CSS (I think).
+      - task: tailwind
+      - task: hugo
+
+  hugo:
+    desc: Run Hugo.
+    cmds:
+      - hugo {{if .WATCH }}server{{end}}
+  tailwind:
+    desc: Compile Tailwind.
+    deps: [npm]
+    cmds:
+      # Tailwind is configured in the Congo project to be relative from the site directory,
+      # so building does factor in the site layout/ and asset/.
+      - ./themes/congo/node_modules/tailwindcss/lib/cli.js
+        -c ./themes/congo/tailwind.config.js
+        -i ./themes/congo/assets/css/main.css
+        -o ./assets/css/compiled/main.css
+        --jit
+        '{{if .WATCH }}--watch{{end}}'
+
+  npm:
+    desc: Install Congo's npm dependencies.
+    deps: [submodule]
+    cmds:
+      - cd themes/congo && npm install
+    status:
+      - test -d themes/congo/node_modules
+  submodule:
+    cmds:
+      - git submodule init
+      - git submodule update
+    status:
+      - test -e themes/congo/.git
+
+  clean:
+    desc: Remove build artifacts.
+    cmds:
+      - rm -r public
