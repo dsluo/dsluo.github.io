@@ -6,13 +6,22 @@
     <description>Recent content in Posts on David Luo</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 09 Jan 2022 01:28:40 -0500</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 22 Sep 2022 22:23:14 -0400</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Jupiter, My NAS Server</title>
+      <link>/posts/2022-09-22-homelab/</link>
+      <pubDate>Thu, 22 Sep 2022 22:23:14 -0400</pubDate>
+      
+      <guid>/posts/2022-09-22-homelab/</guid>
+      <description>So it&amp;rsquo;s about time I documented what&amp;rsquo;s running on my home network and my plans for the future.</description>
+    </item>
+    
     <item>
       <title>Hello, World!</title>
-      <link>/posts/intro/</link>
+      <link>/posts/2022-01-09-intro/</link>
       <pubDate>Sun, 09 Jan 2022 01:28:40 -0500</pubDate>
       
-      <guid>/posts/intro/</guid>
+      <guid>/posts/2022-01-09-intro/</guid>
       <description>&lt;p&gt;There will be some words here, eventually. Hopefully some good words.&lt;/p&gt;</description>
     </item>
     

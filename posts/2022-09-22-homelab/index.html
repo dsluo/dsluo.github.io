@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  class="dark"
+><head>
+  <meta charset="utf-8" />
+  
+    <meta http-equiv="content-language" content="en" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title>Jupiter, My NAS Server &middot; David Luo</title>
+    <meta name="title" content="Jupiter, My NAS Server &middot; David Luo" />
+  
+  <meta name="description" content="" />
+  
+  
+  
+  <link rel="canonical" href="/posts/2022-09-22-homelab/" />
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/schemes/avocado.min.22d40efa0787e9b20acd69125bc170d314a9add3ce43ce84c672c1bd033bc3dddb3c86fe98e871624a10c8daa3b0d716be9cab3c4575ca61e0e2f2f05c3e3d05.css"
+    integrity="sha512-ItQO&#43;geH6bIKzWkSW8Fw0xSprdPOQ86ExnLBvQM7w93bPIb&#43;mOhxYkoQyNqjsNcWvpyrPEV1ymHg4vLwXD49BQ=="
+  />
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/compiled/main.min.1a26952775f4aab25e24cb18b6e6647e718932f4cdc784ec7307624abc69905e117a46d5f4ffd73a0a5d69bf2a401fadbf49d0342e558bc903a4a25c1de067c8.css"
+    integrity="sha512-GiaVJ3X0qrJeJMsYtuZkfnGJMvTNx4TscwdiSrxpkF4RekbV9P/XOgpdab8qQB&#43;tv0nQNC5Vi8kDpKJcHeBnyA=="
+  />
+  
+  
+  
+    <script>
+      function loadPreferredAppearance() {
+        if (localStorage.preferredAppearance === "dark" || (!("preferredAppearance" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+      }
+      function setPreferredAppearance(scheme) {
+        if (scheme == "default") {
+          localStorage.removeItem("preferredAppearance");
+        } else {
+          localStorage.preferredAppearance = scheme;
+        }
+        loadPreferredAppearance();
+      }
+      loadPreferredAppearance();
+      window.matchMedia("(prefers-color-scheme: dark)").addListener(loadPreferredAppearance);
+    </script>
+  
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:title" content="Jupiter, My NAS Server" />
+<meta property="og:description" content="So it&rsquo;s about time I documented what&rsquo;s running on my home network and my plans for the future." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/2022-09-22-homelab/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-22T22:23:14-04:00" />
+<meta property="article:modified_time" content="2022-09-22T22:23:14-04:00" />
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Jupiter, My NAS Server"/>
+<meta name="twitter:description" content="So it&rsquo;s about time I documented what&rsquo;s running on my home network and my plans for the future."/>
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "articleSection": "Posts",
+    "name": "Jupiter, My NAS Server",
+    "headline": "Jupiter, My NAS Server",
+    "description": "So it\u0026rsquo;s about time I documented what\u0026rsquo;s running on my home network and my plans for the future.",
+    "inLanguage": "en",
+    "author" : {
+      "@type": "Person",
+      "name": "David Luo"
+    },
+    "creator" : {
+      "@type": "Person",
+      "name": "David Luo"
+    },
+    "copyrightHolder": "David Luo",
+    "copyrightYear": "2022",
+    "dateCreated": "2022-09-22T22:23:14-04:00",
+    "datePublished": "2022-09-22T22:23:14-04:00",
+    "dateModified": "2022-09-22T22:23:14-04:00",
+    "url" : "\/posts\/2022-09-22-homelab\/",
+    "keywords": ["Homelab"],
+    "wordCount": "994"
+  }
+  </script>
+
+
+  
+  
+    <meta name="generator" content="Hugo 0.103.1" />
+  
+  
+  <meta name="author" content="David Luo" />
+  
+    
+      <link href="mailto:me@dsluo.dev" rel="me" />
+    
+      <link href="https://github.com/dsluo.dev" rel="me" />
+    
+      <link href="https://linkedin.com/in/dsluo" rel="me" />
+    
+  
+  
+  
+
+
+
+
+
+
+  
+  
+  
+  
+
+
+  
+  
+</head>
+<body
+    class="flex flex-col h-screen px-6 m-auto text-lg leading-7 bg-neutral text-neutral-900 sm:px-14 md:px-24 lg:px-32 dark:bg-neutral-800 dark:text-neutral max-w-7xl"
+  ><header
+  class="flex justify-between py-6 font-semibold sm:items-center sm:py-10 text-neutral-900 dark:text-neutral"
+>
+  
+  <div>
+    
+      <a
+        class="hover:underline hover:underline-primary-500 hover:underline-thickness-bold hover:underline-offset-small"
+        rel="me"
+        href="/"
+        >David Luo</a
+      >
+  </div>
+  
+  
+    <nav>
+      <ul class="flex flex-col list-none sm:flex-row">
+        
+          <li class="mb-1 text-right sm:mb-0 sm:mr-7 sm:last:mr-0">
+            <a
+              class="hover:underline hover:underline-primary-500 hover:underline-thickness-bold hover:underline-offset-small"
+              href="/posts/"
+              title="Posts"
+              >Blog</a
+            >
+          </li>
+        
+          <li class="mb-1 text-right sm:mb-0 sm:mr-7 sm:last:mr-0">
+            <a
+              class="hover:underline hover:underline-primary-500 hover:underline-thickness-bold hover:underline-offset-small"
+              href="/about/"
+              title="About"
+              >About</a
+            >
+          </li>
+        
+          <li class="mb-1 text-right sm:mb-0 sm:mr-7 sm:last:mr-0">
+            <a
+              class="hover:underline hover:underline-primary-500 hover:underline-thickness-bold hover:underline-offset-small"
+              href="https://dsluo.dev/resume/"
+              title=""
+              >Resume</a
+            >
+          </li>
+        
+      </ul>
+    </nav>
+  
+</header>
+<main class="flex-grow">
+  <article class="max-w-prose">
+    <header>
+      
+      <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Jupiter, My NAS Server
+      </h1>
+      <div class="mt-8 mb-12 text-base text-neutral-500 dark:text-neutral-400">
+        
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+
+
+  <div class="flex flex-row items-center">
+    
+    
+      <time datetime="2022-09-22 22:23:14 -0400 -0400">September 22, 2022</time>
+
+    
+
+    
+    
+  </div>
+
+
+      </div>
+    </header>
+    <section class="prose dark:prose-light">
+      <p>So it&rsquo;s about time I documented what&rsquo;s running on my home network and my plans
+for the future. I figure it may be interesting for my future self to look back
+on what past me was doing, and perhaps maybe other people will find it
+interesting as well.</p>
+<p>Now, naturally, with any homelab, I need a naming scheme for my network devices,
+and for me, that is the celestial objects in our local solar system. Thus, my
+NAS&rsquo; hostname is <code>jupiter</code>, which I&rsquo;ll be writing about in this first part of
+this series.</p>
+<p>At the time of writing, I&rsquo;m living in my girlfriend&rsquo;s parent&rsquo;s house while we
+wait for our new construction home to be completed, so the current setup is a
+bit stripped down, but once that&rsquo;s completed (hopefully sooner rather than
+later), there should be more than enough room for activites. But for now, this
+will have to do.</p>
+<h1 id="the-machine">The Machine <a class="heading-anchor" href="#the-machine" aria-label="Anchor">#</a></h1>
+<p><img src="jupiter.jpg" alt="Jupiter, my NAS"></p>
+<p>So we have a rack mountable ATX case sitting on a dresser with an old monitor
+and keyboard sitting on top, next to a box and moving blankets. Perfect.</p>
+<!-- todo: the laptop/evolution of setup
+Not actually my first home server, but the first one that is theoretically rack-
+mountable.
+-->
+<h2 id="specs">Specs <a class="heading-anchor" href="#specs" aria-label="Anchor">#</a></h2>
+<p><code>jupiter</code> has pretty okay hardware, consisting primarily of old desktop
+components, along with some more server-specific stuff:</p>
+<ul>
+<li>Rosewill RSV-R4000U 4U Rackmountable Chassis</li>
+<li>Ryzen 7 2700x CPU</li>
+<li>ASUS ROG Strix B450-F Gaming II Motherboard</li>
+<li>16 GB (2x8 I think) of some brand of DDR4 RAM I don&rsquo;t recall</li>
+<li>A GT 710 video card solely for video output</li>
+<li>3x 10 TB shucked WD external 3.5&quot; hard drives for the bulk of the storage, using</li>
+<li>LSI 9240-8i SAS HBA flashed in IT Mode for more SATA interfaces, plus</li>
+<li>2 TB Microcenter store brand NVMe drive for cache, along with</li>
+<li>1 TB Samsung Evo SATA SSD for redundancy</li>
+</ul>
+<h2 id="what-im-running-on-it">What I&rsquo;m running on it <a class="heading-anchor" href="#what-im-running-on-it" aria-label="Anchor">#</a></h2>
+<h3 id="unraid">Unraid <a class="heading-anchor" href="#unraid" aria-label="Anchor">#</a></h3>
+<p>For the OS, I&rsquo;m using what many would start off with for a first time with a
+NAS: <a href="https://unraid.net/">Unraid</a>. If you&rsquo;re not familiar, Unraid is a
+proprietary slackware-based Linux distribution primarily serves as a NAS
+operating system, handling RAID (or rather, Unraid&rsquo;s kinda weird version of
+RAID), hosting Docker containers and virtual machines, and, of course, network
+shares.</p>
+<p><img src="unraid.png" alt="Unraid"></p>
+<p>For a first &ldquo;real&rdquo; RAID setup, Unraid was relatively painless to setup. Put all
+the files on a cheap flash drive, stick it in the computer and away we go.
+There&rsquo;s a bit of a learning curve, but there is plenty of community support to
+make it smoother. Overall, 8/10. Pretty good.</p>
+<h3 id="self-hosted-software">Self-hosted software <a class="heading-anchor" href="#self-hosted-software" aria-label="Anchor">#</a></h3>
+<p>For non-default Unraid stuff, most of my self-hosted software is running in
+Docker containers. Currently, I&rsquo;m running Gitea, for a purpose I&rsquo;ll describe
+later; Duplicati for backup to Backblaze B2; and ddclient, which I use for
+dynamic DNS with Cloudflare. The sole exception is Home Assistant, which runs in
+a virtual machine, as it runs its own Docker containers for its plugin/extension
+system.</p>
+<p>There&rsquo;s also some miscellaneous services turned off as a result of my
+aforementioned living situation, like the <code>unifi-controller</code> container - as I&rsquo;m
+currently just plugged in to the ISP-provided router-modem-access-point-switch
+combo provided by Comcast to my girlfriend&rsquo;s parents - and a Minecraft server
+for whenever my friends feel the urge to return to when we were 14.</p>
+<h1 id="what-is-it-all-used-for">What is it all used for? <a class="heading-anchor" href="#what-is-it-all-used-for" aria-label="Anchor">#</a></h1>
+<p>Of course, being a NAS, the primary purpose of <code>jupiter</code> is to store lots and
+lots of files. 30 TB of raw storage across three 10 TB drives; one used for
+parity by Unraid, so 20 TB of usable storage. At the time of writing, 7.23 TB of
+20 has been filled, mostly consisting of raw and exported photos, backups, and -
+most of all - my girlfriend&rsquo;s texture files.</p>
+<h2 id="textures-textures-textures">Textures, textures, textures <a class="heading-anchor" href="#textures-textures-textures" aria-label="Anchor">#</a></h2>
+<p><img src="upscaling.png" alt="Upscaling example"></p>
+<p>While I do spend a lot of time tinkering with this server, the primary user of
+the disk space is my girlfriend, who spends her free time upscaling (i.e.
+increasing the resolution) of textures for games developed for older, more
+resource constrained platforms using AI. Her process produces a very large
+amount of data, sometimes <em>octupling</em> resolutions, so her hobby gave me an
+excuse to spend $400+ on hard drives and engage in mine. It is for her I set up
+this NAS in the first place, and she is the primary user of the Gitea instance
+running on it, using Git LFS to version control her textures. At some point,
+I&rsquo;ll write up on how I used Backblaze and Cloudflare to distribute her files for
+only the cost of storage.</p>
+<!-- Some of her most popular mods include
+one for The Elder Scrolls IV: Oblivion, a game that came out in 2006,
+quadrupling the resolution of all textures in the game. More recently, she has
+been working on increasing the resolution of all the textures in Final Fantasy
+XIV, an MMORPG that was originally developed to be able to run on the
+Playstation 3 - a console released almost 12 years ago.
+
+Naturally, all this upscaling produces a lot of data. She is *quadrupling* or
+even *octupling* resolutions, after all. And because of her hobby, I had the
+excuse to spend $400+ on hard drives and finally dive into building out my own
+small scale data center.
+
+The Gitea instance mentioned previously actually serves to version control this
+process, using Git LFS to manage the massive files she creates. qBittorrent is
+(or at least will be) used to distribute the end result of her process - multi-
+gigabyte compressed archives of high-resolution textures, in addition to
+uploading to [Nexus Mods](https://www.nexusmods.com/users/629887) and m -->
+<h1 id="plans">Plans <a class="heading-anchor" href="#plans" aria-label="Anchor">#</a></h1>
+<p>As I&rsquo;ve continued to tinker with this machine and my setup in general, I&rsquo;ve had
+thoughts as to what I can improve.</p>
+<p>First and foremost, I&rsquo;m probably going to be migrating this machine to TrueNAS
+for ZFS and its resulting performance benefits. While Unraid is nice for its
+flexibilty, it comes at the opportunity cost of read and write, as its
+implementation of &ldquo;RAID&rdquo; only really provides parity checking and not any of the
+performance benefits of reading from multiple drives at once.</p>
+<p>Speaking of performance, the next thing I&rsquo;ll probably upgrade is my network.
+Currently, I&rsquo;m using Unifi network hardware, which I will describe in a later
+post, but in its current state, it&rsquo;s all 1 gigabit hardware. While 1 gigabit
+download speeds may seem fast when downloading from the Internet, it&rsquo;s not
+really that fast when you&rsquo;re transfering dozens or even hundreds of gigabytes
+of files between comptuers on a local network. I&rsquo;m currently speccing out what
+a 10 gig network would look like, to be upgraded at some point in the next year.</p>
+<p>In addition to the TrueNAS migration, I also plan on adding an additional
+machine soley for compute. While Unraid has been great as an all-in-one
+batteries-included setup, I think the things I want to do with my homelab are
+better suited for something more custom, perhaps with a used enterprise-grade
+server running Proxmox or just Linux.</p>
+<h1 id="goodbye">Goodbye <a class="heading-anchor" href="#goodbye" aria-label="Anchor">#</a></h1>
+<p>That&rsquo;s it for now. Let&rsquo;s hope I actually keep this up and continue writing
+things here.</p>
+
+    </section>
+    <footer class="pt-8">
+      
+
+      
+
+      
+  
+    <div class="pt-8 article-pagination">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+        </span>
+        <span>
+          
+            <a class="flex text-right" href="/posts/2022-01-09-intro/">
+              <span class="flex flex-col">
+                <span class="article-pagination-title mt-[0.1rem] leading-6"
+                  >Hello, World!</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2022-01-09 01:28:40 -0500 -0500">January 9, 2022</time>
+
+                  
+                </span>
+              </span>
+              <span class="ml-3 article-pagination-direction">&rarr;</span>
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+    </footer>
+    
+  </article>
+</main><footer class="py-10">
+  
+  
+    <nav class="pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
+      <ul class="flex flex-col list-none sm:flex-row">
+        
+          <li class="mb-1 sm:mb-0 sm:mr-7 sm:last:mr-0">
+            <a
+              class="hover:underline hover:underline-primary-500 hover:underline-thickness-bold hover:underline-offset-small"
+              href="/categories/"
+              title="Categories"
+              >Categories</a
+            >
+          </li>
+        
+          <li class="mb-1 sm:mb-0 sm:mr-7 sm:last:mr-0">
+            <a
+              class="hover:underline hover:underline-primary-500 hover:underline-thickness-bold hover:underline-offset-small"
+              href="/tags/"
+              title="Tags"
+              >Tags</a
+            >
+          </li>
+        
+      </ul>
+    </nav>
+  
+  <div class="flex justify-between">
+    <div>
+      
+      <p class="text-sm text-neutral-500 dark:text-neutral-400">
+          &copy;
+          2022
+          David Luo
+      </p>
+      
+      
+        <p class="text-xs text-neutral-400 dark:text-neutral-600">
+          
+          
+          Powered by <a class="hover:underline hover:underline-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:underline-primary-400 hover:text-primary-500" href="https://git.io/hugo-congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    
+    
+      <div class="text-sm cursor-pointer text-neutral-400 dark:text-neutral-500">
+        <button
+          id="dark-toggle"
+          onclick="setPreferredAppearance('dark');"
+          oncontextmenu="setPreferredAppearance('default'); return false;"
+          class="inline px-2 py-1 border rounded-md border-neutral-200 dark:hidden hover:text-primary-500 hover:border-primary-400"
+          title="Switch to dark appearance"
+        >
+          
+
+  <span class="relative inline-block align-text-bottom icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="moon" class="svg-inline--fa fa-moon fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z"></path></svg>
+  </span>
+
+
+        </button>
+        <button
+          id="light-toggle"
+          onclick="setPreferredAppearance('light');"
+          oncontextmenu="setPreferredAppearance('default'); return false;"
+          class="hidden px-2 py-1 border rounded-md cursor-pointer dark:inline border-neutral-700 hover:text-primary-400 hover:border-primary-500"
+          title="Switch to light appearance"
+        >
+          
+
+  <span class="relative inline-block align-text-bottom icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="sun" class="svg-inline--fa fa-sun fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 160c-52.9 0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5l-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6 0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0-49.9-49.9-49.9-131.1 0-181 49.9-49.9 131.1-49.9 181 0 49.9 49.9 49.9 131.1 0 181z"></path></svg>
+  </span>
+
+
+        </button>
+      </div>
+    
+  </div>
+  
+  
+</footer>
+</body>
+</html>
