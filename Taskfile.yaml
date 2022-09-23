@@ -34,7 +34,8 @@ tasks:
     cmds:
       # Tailwind is configured in the Congo project to be relative from the site directory,
       # so building does factor in the site layout/ and asset/.
-      - ./themes/congo/node_modules/tailwindcss/lib/cli.js
+      - node
+        ./themes/congo/node_modules/tailwindcss/lib/cli.js
         -c ./themes/congo/tailwind.config.js
         -i ./themes/congo/assets/css/main.css
         -o ./assets/css/compiled/main.css
